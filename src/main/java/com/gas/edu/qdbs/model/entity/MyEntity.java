@@ -1,5 +1,6 @@
-package com.gas.edu;
+package com.gas.edu.qdbs.model.entity;
 
+import io.smallrye.mutiny.Uni;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -27,6 +28,8 @@ public class MyEntity {
     @Id
     @GeneratedValue
     public Long id;
+//
+//    public Uni<String> uniField;
 
     public String field;
 }
