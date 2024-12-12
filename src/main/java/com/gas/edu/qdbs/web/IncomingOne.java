@@ -2,14 +2,17 @@ package com.gas.edu.qdbs.web;
 
 import com.gas.edu.qdbs.model.dto.IncomingMessage;
 import com.gas.edu.qdbs.model.dto.IncomingMessageReply;
-import com.gas.edu.qdbs.model.dto.IncomingMessageReplyList;
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.jboss.resteasy.reactive.RestPath;
+import org.jboss.resteasy.reactive.RestQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +26,25 @@ public class IncomingOne {
     @Operation(summary = "send an incoming message")
     @APIResponse(responseCode = "200", description = "Ok")
     @APIResponse(responseCode = "500", description = "Internal Error")
-    @Path("/qppp/{pp}")
+    @Path("/qppp/{xx}/{yy}")
     //public Response createMessage(@QueryParam("incomingMessage") IncomingMessage incomingMessage) {
     public Response createMessage(
-            @Parameter(name = "incomingMessage", description = "il messaggio in input", required = true)
-            @QueryParam(value = "id") List<String> listqp,
-            @PathParam(value = "pp") String singlepp,
-            @RequestBody IncomingMessage incomingMessage) {
+            /*
+
+
+
+
+             */
+            @Parameter(name = "id-list", description = "la lista di id ?query", required = true)
+            @RestQuery(value = "id1") List<String> listqp,
+            //@Parameterserve solo a rseasy quarkusRest non lo rigetta! se lo metti non mostra il campo. Ci pensa lui a dare l'openapi descr.
+            //@Parameter(name = "xx singolo", description = "singolo xx /path/", required = true)
+            @RestPath String xx,
+            //@Parameter(name = "yy singolo", description = "singolo yy /path/", required = true)
+            @RestPath(value = "yy") String yy,
+
+            //solo per restEasyserve requestBody! @RequestBody IncomingMessage incomingMessage) {
+            IncomingMessage incomingMessage) {
     //    IncomingMessageReply incomingMessageReply = new IncomingMessageReply();
 //        incomingMessageReply.setMessage(String.format("===> n:%s s:%s",incomingMessage.getName(),incomingMessage.getSurname()));
         List<IncomingMessageReply> retv = new ArrayList<>();
