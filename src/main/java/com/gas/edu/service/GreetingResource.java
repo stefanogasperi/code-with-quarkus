@@ -1,4 +1,4 @@
-package com.gas.edu;
+package com.gas.edu.service;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
